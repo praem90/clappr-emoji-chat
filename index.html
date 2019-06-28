@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Clappr Emoji Chat Plugin Demo</title>
+</head>
+<body>
+    <div id="player"></div>
+    <script type="text/javascript" charset="utf-8">
+window.onload = function() {
+    player = new Clappr.Player({
+        source: 'http://techslides.com/demos/sample-videos/small.mp4',
+        parentId: '#player',
+        emojiChat: {
+          onClick: (emoji) => {
+            console.log(emoji)
+          },
+          // emojis: [
+          //   'like',
+          //   'doubt',
+          //   'haha',
+          // ]
+        },
+        plugins: [EmojiChatPlugin]
+    });
+    player.getPlugin('EmojiChatPlugin').updateViewCount(10);
+    player.getPlugin('EmojiChatPlugin').updateEmojiCount('haha', 10);
+}
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./dist/emoji-chat.js"> </script>
+</body>
+</html>
