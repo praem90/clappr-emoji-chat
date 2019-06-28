@@ -64,7 +64,7 @@ Inlcude the plugin src next to the clappr src like below
 ```
 Now you can see emojis on your player. ENJOY!!
 
-### Are you looking for customization
+### Template
 
 Below template structure, You can use your css to update these
 
@@ -76,6 +76,27 @@ Below template structure, You can use your css to update these
       span.emoji-icon-{emojiName}-count
 ```
 
-To add new Emoji
+### Add custom emoji
 
-Add an element to `emojiChat.emojis` option on clappr options. Add css to style your emoji like `.emoji-icon-beers::after {content: "\1F37B"}`
+Add an element to `emojiChat.emojis` option on clappr options. Add css to style your emoji like `.emoji-icon-{emojiName}::after {content: "/*Your emoji utf-8 code*/"}`
+
+```
+  let player = Clappr.player({
+    ...
+    plugins: [EmojiChatPlugin],
+    emojiChat: {
+      emojis: [
+        ...
+        "beers"
+      ]
+    }
+    ...
+  });
+
+
+  // And in your css
+
+  .emoji-icon-beers::after {
+    content: "\1F37B"
+  }
+```
