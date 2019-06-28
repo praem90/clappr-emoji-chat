@@ -12,9 +12,7 @@ window.onload = function() {
         source: 'http://techslides.com/demos/sample-videos/small.mp4',
         parentId: '#player',
         emojiChat: {
-          onClick: (emoji) => {
-            console.log(emoji)
-          },
+          onClick: EmojiClickHandler,
           // emojis: [
           //   'like',
           //   'doubt',
@@ -23,11 +21,16 @@ window.onload = function() {
         },
         plugins: [EmojiChatPlugin]
     });
+
+    function EmojiClickHandler (emoji) {
+      console.log(emoji + 'was clicked'); // haha was clicked 
+      // Do your own operation here
+    }
     player.getPlugin('EmojiChatPlugin').updateViewCount(10);
     player.getPlugin('EmojiChatPlugin').updateEmojiCount('haha', 10);
 }
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./dist/emoji-chat.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="./dist/clappr-emoji-chat.js"> </script>
 </body>
 </html>

@@ -32,7 +32,7 @@ module.exports = {
     extensions: ['', '.js'],
   },
   output: {
-    filename: 'dist/emoji-chat.js',
+    filename: 'dist/clappr-emoji-chat.js',
     library: 'EmojiChatPlugin',
     libraryTarget: 'umd',
   },
