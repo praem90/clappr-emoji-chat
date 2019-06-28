@@ -1,37 +1,81 @@
-## Welcome to GitHub Pages
+## Clappr Emoji Chat Plugin
+A Clappr plugin for add emiji and live viewers count. You can integrate and update count using web socket like socket.io or your own way
 
-You can use the [editor on GitHub](https://github.com/praem90/clappr-emoji-chat/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Installation
+Clone the repo 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+`git clone https://github.com/praem90/clappr-emoji-chat`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+run 
 
-```markdown
-Syntax highlighted code block
+`npm i && npm run build`
 
-# Header 1
-## Header 2
-### Header 3
+for production environment
 
-- Bulleted
-- List
+`npm run release`
 
-1. Numbered
-2. List
+Plugin will be generated at
 
-**Bold** and _Italic_ and `Code` text
+`dist/clappr-emoji-chat.js`
 
-[Link](url) and ![Image](src)
+Inlcude the plugin src next to the clappr src like below
+
+```
+...
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
+<script type="text/javascript" charset="utf-8" src="./dist/clappr-emoji-chat.js"> </script>
+<script>
+// Add this plugin to your clappr options 
+  let player = new Clappr.player({
+    ...
+    plugins: [ClapprEmojiPlugin],
+    emojiChat: {
+      // This plugin provides below emojis out of the box.
+      emojis: [
+        'like',
+        'love',
+        'haha',
+        'wow',
+        'sad',
+        'angry',
+      ],
+      onClick: EmojiClickHandler,
+      bottom: false, //By deafault emoji container should takes place on the left. If set to `true`, it will be placed to the bottom 
+    }
+  });
+  
+  // Emoji Click handler
+  // @param emoji string Emoji name 
+  function EmojiClickHandler (emoji) {
+    console.log(emoji + 'was clicked'); // haha was clicked 
+    // Do your own operation here
+  }
+
+  // To Update view count
+  player.getPlugin('EmojiChatPlugin').updateViewCount(10);
+  
+  // TO update emoji click count, 
+  // @param string emoji name
+  // @param int click count
+  player.getPlugin('EmojiChatPlugin').updateEmojiCount('haha', 10);
+</script>
+...
+```
+Now you can see emojis on your player. ENJOY!!
+
+### Are you looking for customization
+
+Below template structure, You can use your css to update these
+
+```
+.emoji-container
+  ul.emiji-list
+    li.emoji-list-item
+      span.emoji-icon.emoji-icon-{emojiName}
+      span.emoji-icon-{emojiName}-count
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+To add new Emoji
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/praem90/clappr-emoji-chat/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Add an element to `emojiChat.emojis` option on clappr options. Add css to style your emoji like `.emoji-icon-beers::after {content: "\1F37B"}`
