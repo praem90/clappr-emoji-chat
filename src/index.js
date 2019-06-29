@@ -1,8 +1,8 @@
-import {Clappr, UIContainerPlugin, template, EVENTS} from 'clappr';
+import {UICorePlugin, template} from 'clappr';
 import html from './template.html';
 import './emoji.scss';
 
-export default class EmojiChatPlugin extends UIContainerPlugin {
+export default class EmojiChatPlugin extends UICorePlugin {
   get name() { return 'EmojiChatPlugin' };
   
   get template() { return template(html) };
@@ -21,6 +21,13 @@ export default class EmojiChatPlugin extends UIContainerPlugin {
     }
   }
 
+  get events() {
+    return {
+      'click .emoji-icon': 'emojiClick',
+      'mouseenter .emoji-icon': 'rotateEmoji',
+    }
+  }
+
   get attributes() {
     return {
       class: 'emojis-container animated faster d-flex rounded '
@@ -30,27 +37,24 @@ export default class EmojiChatPlugin extends UIContainerPlugin {
 
   constructor(options) {
     super(options)
-    this.options.emojiChat = this.options.emojiChat || {};
-    this.options.emojiChat = Object.assign({}, this.defaults, this.options.emojiChat);
-    this.render();
   }
 
-  bindEmojiClickEvents() {
-    let icon = this.$el.find('.emoji-icon');
+  emojiClick(e) {
+    e.preventDefault();
 
-    icon.click((e) => {
-      let zoomOutClass = this.options.emojiChat.bottom ? 'zoomOutUp' : 'zoomOutRight';
-      let el = $(e.target).addClass(zoomOutClass);
-      setTimeout(() => el.removeClass(zoomOutClass), 1000);
-      if (this.options.emojiChat && this.options.emojiChat.onClick) {
-          this.options.emojiChat.onClick(el.data('emoji'));
-      }
-    });
+    let zoomOutClass = this.options.emojiChat.bottom ? 'zoomOutUp' : 'zoomOutRight';
+    let el = $(e.target).addClass(zoomOutClass);
 
-    icon.mouseenter((e) => {
-      $(e.target).addClass('rotateIn');
-      setTimeout(() => $(e.target).removeClass('rotateIn'), 1000);
-    });
+    setTimeout(() => el.removeClass(zoomOutClass), 1000);
+
+    if (this.options.emojiChat && this.options.emojiChat.onClick) {
+        this.options.emojiChat.onClick(el.data('emoji'));
+    }
+  }
+
+  rotateEmoji(e) {
+    $(e.target).addClass('rotateIn');
+    setTimeout(() => $(e.target).removeClass('rotateIn'), 1000);
   }
 
   updateEmojiCount(emoji, count) {
@@ -78,11 +82,13 @@ export default class EmojiChatPlugin extends UIContainerPlugin {
   }
 
   render() {
+    this.options.emojiChat = Object.assign({}, this.defaults, this.options.emojiChat || {});
+    
     this.$el.hide()
     this.$el.html(this.template(this.options.emojiChat))
-    this.container.$el.append(this.$el)
+    this.core.$el.append(this.$el)
     this.$el.show();
-    this.bindEmojiClickEvents();
+    
     return this;
   }
 }
