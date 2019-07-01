@@ -16,10 +16,6 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-      },
-      {
         test: /\.scss$/,
         loaders: ['style-loader?singleton=true', 'css-loader', 'sass-loader'],
       },
@@ -32,7 +28,8 @@ module.exports = {
     extensions: ['', '.js'],
   },
   output: {
-    filename: 'dist/clappr-emoji-chat.js',
+    path: 'dist',
+    filename: process.env.NODE_ENV === 'production' ? 'clappr-emoji-chat.min.js' : 'clappr-emoji-chat.js',
     library: 'EmojiChatPlugin',
     libraryTarget: 'umd',
   },

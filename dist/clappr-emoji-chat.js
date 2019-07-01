@@ -1,1 +1,355 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("Clappr")):"function"==typeof define&&define.amd?define(["Clappr"],t):"object"==typeof exports?exports.EmojiChatPlugin=t(require("Clappr")):e.EmojiChatPlugin=t(e.Clappr)}(this,function(e){return function(e){function t(n){if(o[n])return o[n].exports;var i=o[n]={exports:{},id:n,loaded:!1};return e[n].call(i.exports,i,i.exports,t),i.loaded=!0,i.exports}var o={};return t.m=e,t.c=o,t.p="",t(0)}([function(e,t,o){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}(),s=function(e,t,o){for(var n=!0;n;){var i=e,r=t,a=o;n=!1,null===i&&(i=Function.prototype);var s=Object.getOwnPropertyDescriptor(i,r);if(void 0!==s){if("value"in s)return s.value;var c=s.get;if(void 0===c)return;return c.call(a)}var l=Object.getPrototypeOf(i);if(null===l)return;e=l,t=r,o=a,n=!0,s=l=void 0}},c=o(6),l=o(3),u=n(l);o(5);var f=function(e){function t(e){i(this,t),s(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e)}return r(t,e),a(t,[{key:"name",get:function(){return"EmojiChatPlugin"}},{key:"template",get:function(){return(0,c.template)(u.default)}},{key:"defaults",get:function(){return{emojis:["like","love","haha","wow","sad","angry"],bottom:!1}}},{key:"events",get:function(){return{"click .emoji-icon":"emojiClick","mouseenter .emoji-icon":"rotateEmoji"}}},{key:"attributes",get:function(){return{class:"emojis-container animated faster d-flex rounded "+(this.options.emojiChat.bottom?"bottom-center":"")}}}]),a(t,[{key:"emojiClick",value:function(e){e.preventDefault();var t=this.options.emojiChat.bottom?"zoomOutUp":"zoomOutRight",o=$(e.target).addClass(t);setTimeout(function(){return o.removeClass(t)},1e3),this.options.emojiChat&&this.options.emojiChat.onClick&&this.options.emojiChat.onClick(o.data("emoji"))}},{key:"rotateEmoji",value:function(e){$(e.target).addClass("rotateIn"),setTimeout(function(){return $(e.target).removeClass("rotateIn")},1e3)}},{key:"updateEmojiCount",value:function(e,t){var o=this.$el.find(".emoji-icon-"+e+"-count");return o&&o.html(t),this}},{key:"updateViewCount",value:function(e){var t=this.$el.find(".view_count");t&&t.html(e)}},{key:"show",value:function(){this.$el.show()}},{key:"hide",value:function(){this.$el.hide()}},{key:"render",value:function(){return this.options.emojiChat=Object.assign({},this.defaults,this.options.emojiChat||{}),this.$el.hide(),this.$el.html(this.template(this.options.emojiChat)),this.core.$el.append(this.$el),this.$el.show(),this}}]),t}(c.UICorePlugin);t.default=f,e.exports=t.default},function(e,t){"use strict";e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var o=this[t];o[2]?e.push("@media "+o[2]+"{"+o[1]+"}"):e.push(o[1])}return e.join("")},e.i=function(t,o){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},i=0;i<this.length;i++){var r=this[i][0];"number"==typeof r&&(n[r]=!0)}for(i=0;i<t.length;i++){var a=t[i];"number"==typeof a[0]&&n[a[0]]||(o&&!a[2]?a[2]=o:o&&(a[2]="("+a[2]+") and ("+o+")"),e.push(a))}},e}},function(e,t,o){t=e.exports=o(1)(),t.push([e.id,'@font-face{font-family:NotoColorEmoji;font-weight:400;src:url(https://cdn.glitch.com/61908de1-dd0a-4359-a54b-6cb6d41bb5fd%2FNotoColorEmoji.ttf?1513108808150) format("truetype")}.emojis-container{position:absolute;left:0;height:100vh;z-index:1;background-color:rgba(0,0,0,.7)}.emojis-container .emojis-list{margin:auto 0;display:block!important;list-style:none}.emojis-container.bottom-center{width:100%;height:auto;bottom:5px}.emojis-container.bottom-center .emojis-list{margin:0 auto;display:flex!important}.emojis-container.bottom-center .emoji-list-item{float:left;padding:0 .5rem}@media screen and (min-width:720px){.emojis-container .emoji-icon{font-size:2rem}}.emojis-container .emoji-icon{font-size:1.2rem;font-family:Noto Color Emoji,NotoColorEmoji;cursor:pointer}.emojis-container .emoji-icon.emoji-icon-love:after{content:"\\1F493"}.emojis-container .emoji-icon.emoji-icon-eye:after{content:"\\1F441"}.emojis-container .emoji-icon.emoji-icon-wow:after{content:"\\1F62E"}.emojis-container .emoji-icon.emoji-icon-haha:after{content:"\\1F606"}.emojis-container .emoji-icon.emoji-icon-like:after{content:"\\1F44D"}.emojis-container .emoji-icon.emoji-icon-sad:after{content:"\\1F61E"}.emojis-container .emoji-icon.emoji-icon-angry:after{content:"\\1F620"}.emojis-container .emoji-list-item{position:relative;padding:0 .5rem}.emojis-container .emoji-list-item:hover{transform:scale(1.4)}.emojis-container .emoji-list-item [class$=count]{display:block;color:#fff}.emojis-container .emoji-list-item .view_count{color:#fff}.emojis-container .emoji-list-item .view_count:before{content:"\\1F441   "}',""])},function(e,t){e.exports='<ul class="emojis-list list-unstyled">\n    <li class="emoji-list-item m-0"><span class="view_count d-block">0</span></li>\n    <% for (var i = 0; i < emojis.length; i++) { %>\n      <li class="emoji-list-item d-flex m-0 mb-1"><div class="m-auto"><span class="d-inline-block emoji-icon emoji-icon-<%= emojis[i] %> animated" data-emoji="<%= emojis[i] %>"></span><span class="emoji-icon-<%= emojis[i] %>-count">0</span></div></li>\n    <% }; %>\n</ul>'},function(e,t,o){function n(e,t){for(var o=0;o<e.length;o++){var n=e[o],i=f[n.id];if(i){i.refs++;for(var r=0;r<i.parts.length;r++)i.parts[r](n.parts[r]);for(;r<n.parts.length;r++)i.parts.push(s(n.parts[r],t))}else{for(var a=[],r=0;r<n.parts.length;r++)a.push(s(n.parts[r],t));f[n.id]={id:n.id,refs:1,parts:a}}}}function i(e){for(var t=[],o={},n=0;n<e.length;n++){var i=e[n],r=i[0],a=i[1],s=i[2],c=i[3],l={css:a,media:s,sourceMap:c};o[r]?o[r].parts.push(l):t.push(o[r]={id:r,parts:[l]})}return t}function r(){var e=document.createElement("style"),t=d();return e.type="text/css",t.appendChild(e),e}function a(){var e=document.createElement("link"),t=d();return e.rel="stylesheet",t.appendChild(e),e}function s(e,t){var o,n,i;if(t.singleton){var s=j++;o=h||(h=r()),n=c.bind(null,o,s,!1),i=c.bind(null,o,s,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(o=a(),n=u.bind(null,o),i=function(){o.parentNode.removeChild(o),o.href&&URL.revokeObjectURL(o.href)}):(o=r(),n=l.bind(null,o),i=function(){o.parentNode.removeChild(o)});return n(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;n(e=t)}else i()}}function c(e,t,o,n){var i=o?"":n.css;if(e.styleSheet)e.styleSheet.cssText=v(t,i);else{var r=document.createTextNode(i),a=e.childNodes;a[t]&&e.removeChild(a[t]),a.length?e.insertBefore(r,a[t]):e.appendChild(r)}}function l(e,t){var o=t.css,n=t.media;t.sourceMap;if(n&&e.setAttribute("media",n),e.styleSheet)e.styleSheet.cssText=o;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(o))}}function u(e,t){var o=t.css,n=(t.media,t.sourceMap);n&&(o+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(n))))+" */");var i=new Blob([o],{type:"text/css"}),r=e.href;e.href=URL.createObjectURL(i),r&&URL.revokeObjectURL(r)}var f={},m=function(e){var t;return function(){return"undefined"==typeof t&&(t=e.apply(this,arguments)),t}},p=m(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),d=m(function(){return document.head||document.getElementsByTagName("head")[0]}),h=null,j=0;e.exports=function(e,t){t=t||{},"undefined"==typeof t.singleton&&(t.singleton=p());var o=i(e);return n(o,t),function(e){for(var r=[],a=0;a<o.length;a++){var s=o[a],c=f[s.id];c.refs--,r.push(c)}if(e){var l=i(e);n(l,t)}for(var a=0;a<r.length;a++){var c=r[a];if(0===c.refs){for(var u=0;u<c.parts.length;u++)c.parts[u]();delete f[c.id]}}}};var v=function(){var e=[];return function(t,o){return e[t]=o,e.filter(Boolean).join("\n")}}()},function(e,t,o){var n=o(2);"string"==typeof n&&(n=[[e.id,n,""]]);o(4)(n,{singleton:!0});n.locals&&(e.exports=n.locals)},function(t,o){t.exports=e}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("Clappr"));
+	else if(typeof define === 'function' && define.amd)
+		define(["Clappr"], factory);
+	else if(typeof exports === 'object')
+		exports["EmojiChatPlugin"] = factory(require("Clappr"));
+	else
+		root["EmojiChatPlugin"] = factory(root["Clappr"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(_x,_x2,_x3){var _again=true;_function: while(_again) {var object=_x,property=_x2,receiver=_x3;_again = false;if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {_x = parent;_x2 = property;_x3 = receiver;_again = true;desc = parent = undefined;continue _function;}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _clappr=__webpack_require__(1);var _templateHtml=__webpack_require__(2);var _templateHtml2=_interopRequireDefault(_templateHtml);__webpack_require__(3);var EmojiChatPlugin=(function(_UICorePlugin){_inherits(EmojiChatPlugin,_UICorePlugin);_createClass(EmojiChatPlugin,[{key:'name',get:function get(){return 'EmojiChatPlugin';}},{key:'template',get:function get(){return (0,_clappr.template)(_templateHtml2['default']);}},{key:'defaults',get:function get(){return {emojis:['like','love','haha','wow','sad','angry'],bottom:false};}},{key:'events',get:function get(){return {'click .emoji-icon':'emojiClick','mouseenter .emoji-icon':'rotateEmoji'};}},{key:'attributes',get:function get(){return {'class':'emojis-container animated faster d-flex rounded ' + (this.options.emojiChat.bottom?'bottom-center':'')};}}]);function EmojiChatPlugin(options){_classCallCheck(this,EmojiChatPlugin);_get(Object.getPrototypeOf(EmojiChatPlugin.prototype),'constructor',this).call(this,options);}_createClass(EmojiChatPlugin,[{key:'emojiClick',value:function emojiClick(e){e.preventDefault();var zoomOutClass=this.options.emojiChat.bottom?'zoomOutUp':'zoomOutRight';var el=$(e.target).addClass(zoomOutClass);setTimeout(function(){return el.removeClass(zoomOutClass);},1000);if(this.options.emojiChat && this.options.emojiChat.onClick){this.options.emojiChat.onClick(el.data('emoji'));}}},{key:'rotateEmoji',value:function rotateEmoji(e){$(e.target).addClass('rotateIn');setTimeout(function(){return $(e.target).removeClass('rotateIn');},1000);}},{key:'updateEmojiCount',value:function updateEmojiCount(emoji,count){var badge=this.$el.find('.emoji-icon-' + emoji + '-count');if(badge){badge.html(count);}return this;}},{key:'updateViewCount',value:function updateViewCount(count){var badge=this.$el.find('.view_count');if(badge){badge.html(count);}}},{key:'show',value:function show(){this.$el.show();}},{key:'hide',value:function hide(){this.$el.hide();}},{key:'render',value:function render(){this.options.emojiChat = Object.assign({},this.defaults,this.options.emojiChat || {});this.$el.hide();this.$el.html(this.template(this.options.emojiChat));this.core.$el.append(this.$el);this.$el.show();return this;}}]);return EmojiChatPlugin;})(_clappr.UICorePlugin);exports['default'] = EmojiChatPlugin;module.exports = exports['default'];
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	module.exports = "<ul class=\"emojis-list list-unstyled\">\n    <li class=\"emoji-list-item m-0\"><span class=\"view_count d-block\">0</span></li>\n    <% for (var i = 0; i < emojis.length; i++) { %>\n      <li class=\"emoji-list-item d-flex m-0 mb-1\"><div class=\"m-auto\"><span class=\"d-inline-block emoji-icon emoji-icon-<%= emojis[i] %> animated\" data-emoji=\"<%= emojis[i] %>\"></span><span class=\"emoji-icon-<%= emojis[i] %>-count\">0</span></div></li>\n    <% }; %>\n</ul>";
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(4);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(6)(content, {"singleton":true});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/index.js!./emoji.scss", function() {
+				var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/index.js!./emoji.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(5)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@charset \"UTF-8\";\n@font-face {\n  font-family: NotoColorEmoji;\n  font-weight: 400;\n  src: url(https://cdn.glitch.com/61908de1-dd0a-4359-a54b-6cb6d41bb5fd%2FNotoColorEmoji.ttf?1513108808150) format(\"truetype\"); }\n\n.emojis-container {\n  position: absolute;\n  left: 0;\n  height: 100vh;\n  z-index: 1;\n  background-color: rgba(0, 0, 0, 0.7); }\n  .emojis-container .emojis-list {\n    margin: auto 0;\n    display: block !important; }\n  .emojis-container .emojis-list {\n    list-style: none; }\n  .emojis-container.bottom-center {\n    width: 100%;\n    height: auto;\n    bottom: 5px; }\n    .emojis-container.bottom-center .emojis-list {\n      margin: 0 auto;\n      display: flex !important; }\n    .emojis-container.bottom-center .emoji-list-item {\n      float: left;\n      padding: 0 0.5rem; }\n  @media screen and (min-width: 720px) {\n    .emojis-container .emoji-icon {\n      font-size: 2rem; } }\n  .emojis-container .emoji-icon {\n    font-size: 1.2rem;\n    font-family: \"Noto Color Emoji\", NotoColorEmoji;\n    cursor: pointer; }\n    .emojis-container .emoji-icon.emoji-icon-love::after {\n      content: \"\\1F493\"; }\n    .emojis-container .emoji-icon.emoji-icon-eye::after {\n      content: \"\\1F441\"; }\n    .emojis-container .emoji-icon.emoji-icon-wow::after {\n      content: \"\\1F62E\"; }\n    .emojis-container .emoji-icon.emoji-icon-haha::after {\n      content: \"\\1F606\"; }\n    .emojis-container .emoji-icon.emoji-icon-like::after {\n      content: \"\\1F44D\"; }\n    .emojis-container .emoji-icon.emoji-icon-sad::after {\n      content: \"\\1F61E\"; }\n    .emojis-container .emoji-icon.emoji-icon-angry::after {\n      content: \"\\1F620\"; }\n  .emojis-container .emoji-list-item {\n    position: relative;\n    padding: 0 0.5rem; }\n    .emojis-container .emoji-list-item:hover {\n      transform: scale(1.4); }\n    .emojis-container .emoji-list-item [class$=\"count\"] {\n      display: block;\n      color: #fff; }\n    .emojis-container .emoji-list-item .view_count {\n      color: #fff; }\n      .emojis-container .emoji-list-item .view_count::before {\n        content: \"\\1F441   \"; }\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/ // css base code, injected by the css-loader
+	"use strict";module.exports = function(){var list=[]; // return the list of modules as css string
+	list.toString = function toString(){var result=[];for(var i=0;i < this.length;i++) {var item=this[i];if(item[2]){result.push("@media " + item[2] + "{" + item[1] + "}");}else {result.push(item[1]);}}return result.join("");}; // import a list of modules into the list
+	list.i = function(modules,mediaQuery){if(typeof modules === "string")modules = [[null,modules,""]];var alreadyImportedModules={};for(var i=0;i < this.length;i++) {var id=this[i][0];if(typeof id === "number")alreadyImportedModules[id] = true;}for(i = 0;i < modules.length;i++) {var item=modules[i]; // skip already imported module
+	// this implementation is not 100% perfect for weird media query combinations
+	//  when a module is imported multiple times with different media queries.
+	//  I hope this will never occur (Hey this way we have smaller bundles)
+	if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]){if(mediaQuery && !item[2]){item[2] = mediaQuery;}else if(mediaQuery){item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";}list.push(item);}}};return list;};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0;
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function createStyleElement() {
+		var styleElement = document.createElement("style");
+		var head = getHeadElement();
+		styleElement.type = "text/css";
+		head.appendChild(styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement() {
+		var linkElement = document.createElement("link");
+		var head = getHeadElement();
+		linkElement.rel = "stylesheet";
+		head.appendChild(linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement());
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement();
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement();
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ })
+/******/ ])
+});
+;

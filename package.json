@@ -1,11 +1,16 @@
 {
   "name": "clappr-emoji-chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Emoji Chat plugin for clappr",
+  "homepage": "https://github.com/praem90/clappr-emoji-chat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/praem90/clappr-emoji-chat"
+  },
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack",
-    "release": "./node_modules/.bin/webpack -p"
+    "release": "NODE_ENV=production ./node_modules/.bin/webpack -p"
   },
   "author": "Mohan Raj <praem1990@gmail.com>",
   "license": "ISC",
@@ -21,12 +26,14 @@
     "mocha": "^2.3.2",
     "mocha-loader": "^0.7.1",
     "node-sass": "^3.3.3",
-    "postcss-loader": "^3.0.0",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2"
   },
-  "dependencies": {
-    "bootstrap": "^4.3.1"
-  }
+  "dependencies": {},
+  "keywords": [
+    "clappr",
+    "emoji",
+    "plugin"
+  ]
 }
