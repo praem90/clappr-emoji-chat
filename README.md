@@ -2,29 +2,18 @@
 A Clappr plugin for add emiji and live viewers count. You can integrate and update count using web socket like socket.io or your own way
 
 ### Installation
-Clone the repo 
+Install Using npm 
 
+`npm i --save clappr-emoji-chat`
 
-`git clone https://github.com/praem90/clappr-emoji-chat`
-
-run 
-
-`npm i && npm run build`
-
-for production environment
-
-`npm run release`
-
-Plugin will be generated at
-
-`dist/clappr-emoji-chat.js`
+Install using CDN 
 
 Inlcude the plugin src next to the clappr src like below
 
 ```
 ...
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
-<script type="text/javascript" charset="utf-8" src="./dist/clappr-emoji-chat.js"> </script>
+<script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/clappr-emoji-chat@latest/dist/clappr-emoji-chat.min.js"> </script>
 <script>
 // Add this plugin to your clappr options 
   let player = new Clappr.player({
