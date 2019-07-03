@@ -31,7 +31,7 @@ export default class EmojiChatPlugin extends UICorePlugin {
   get attributes() {
     return {
       class: 'emojis-container animated faster d-flex rounded '
-        + (this.options.emojiChat.bottom ? 'bottom-center' : ''),
+        + (this.options.emojiChat && this.options.emojiChat.bottom ? 'bottom-center' : ''),
     }
   }
 
@@ -85,7 +85,7 @@ export default class EmojiChatPlugin extends UICorePlugin {
     this.options.emojiChat = Object.assign({}, this.defaults, this.options.emojiChat || {});
     
     this.$el.hide()
-    this.$el.html(this.template(this.options.emojiChat))
+    this.$el.html(this.template(this.options.emojiChat));
     this.core.$el.append(this.$el)
     this.$el.show();
     
