@@ -1,6 +1,6 @@
-import {UICorePlugin, template} from 'clappr';
+import {UICorePlugin, template, Styler} from 'clappr';
 import html from './template.html';
-import './emoji.scss';
+import styles from './emoji.scss';
 
 export default class EmojiChatPlugin extends UICorePlugin {
   get name() { return 'EmojiChatPlugin' };
@@ -84,7 +84,8 @@ export default class EmojiChatPlugin extends UICorePlugin {
   render() {
     this.options.emojiChat = Object.assign({}, this.defaults, this.options.emojiChat || {});
     
-    this.$el.hide()
+    this.$el.hide();
+    this.core.$el.append(Styler.getStyleFor(styles));
     this.$el.html(this.template(this.options.emojiChat));
     this.core.$el.append(this.$el)
     this.$el.show();

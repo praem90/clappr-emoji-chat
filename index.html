@@ -7,30 +7,36 @@
 <body>
     <div id="player"></div>
     <script type="text/javascript" charset="utf-8">
-window.onload = function() {
-    player = new Clappr.Player({
-        source: 'http://techslides.com/demos/sample-videos/small.mp4',
-        parentId: '#player',
-        emojiChat: {
-          onClick: EmojiClickHandler,
-          // emojis: [
-          //   'like',
-          //   'doubt',
-          //   'haha',
-          // ]
-        },
-        plugins: [EmojiChatPlugin]
-    });
+      window.onload = function() {
+        player = new Clappr.Player({
+          source: 'http://techslides.com/demos/sample-videos/small.mp4',
+          parentId: '#player',
+          emojiChat: {
+            onClick: EmojiClickHandler,
+            bottom: true,
+            // emojis: [
+            //   'like',
+            //   'doubt',
+            //   'haha',
+            // ]
+          },
+          mediaControlDisabled: true,
+          plugins: [EmojiChatPlugin]
+      });
+      // console.log(new EmojiChatPlugin)
 
-    function EmojiClickHandler (emoji) {
-      console.log(emoji + ' was clicked'); // haha was clicked 
-      // Do your own operation here
+      function EmojiClickHandler (emoji) {
+        console.log(emoji + ' was clicked'); // haha was clicked 
+        // Do your own operation here
+      }
+      player.on(Clappr.Events.PLAYER_PLAY, () => {
+        player.getPlugin('media_control').disable();
+        player.getPlugin('EmojiChatPlugin').updateViewCount(11);
+        player.getPlugin('EmojiChatPlugin').updateEmojiCount('haha', 10);
+      });
     }
-    player.getPlugin('EmojiChatPlugin').updateViewCount(10);
-    player.getPlugin('EmojiChatPlugin').updateEmojiCount('haha', 10);
-}
     </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./dist/clappr-emoji-chat.js"> </script>
 </body>
 </html>

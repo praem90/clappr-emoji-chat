@@ -1,34 +1,43 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+
+const externals = {
+  clappr: {
+    amd: 'clappr',
+    commonjs: 'clappr',
+    commonjs2: 'clappr',
+    root: 'Clappr'
+  }
+}
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
-  externals: {
-    clappr: 'Clappr',
-  },
+  externals: externals,
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-            compact: true,
-        }
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader?singleton=true', 'css-loader', 'sass-loader'],
+        use: [
+          {loader: 'css-loader'},
+          {loader: 'postcss-loader'},
+          {loader: 'sass-loader'}
+        ],
       },
       {
-       test: /\.html/, loader: 'html?minimize=false'
+        test: /\.html/,
+        loader: 'html-loader?minimize=true'
      },
     ],
   },
-  resolve: {
-    extensions: ['', '.js'],
-  },
   output: {
-    path: 'dist',
+    path: path.join(__dirname, './dist'),
     filename: process.env.NODE_ENV === 'production' ? 'clappr-emoji-chat.min.js' : 'clappr-emoji-chat.js',
     library: 'EmojiChatPlugin',
     libraryTarget: 'umd',
